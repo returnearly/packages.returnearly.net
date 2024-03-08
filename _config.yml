@@ -1,0 +1,15 @@
+title: Return Early, LLC
+email: support@returnearly.net
+description: >-
+  Linux Packages for Return Early Projects
+baseurl: ""
+url: "https://returnearly.github.io"
+github_username: returnearly
+
+# Build settings
+theme: minima
+plugins:
+  - jekyll-feed
+exclude:
+  - tools/
+  - doc/
