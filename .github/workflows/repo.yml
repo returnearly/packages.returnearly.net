@@ -22,7 +22,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: [REPO] Install required packages
+      - name: "[REPO] Install required packages"
         run: |
           until sudo apt update
           do
