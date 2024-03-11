@@ -3,7 +3,7 @@ email: support@returnearly.net
 description: >-
   Linux Packages for Return Early Projects
 baseurl: ""
-url: "https://returnearly.github.io"
+url: "https://packages.returnearly.net"
 github_username: returnearly
 
 # Build settings
