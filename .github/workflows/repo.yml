@@ -34,7 +34,7 @@ jobs:
 
       - name: "[REPO] Insert environment variables"
         run: |
-          echo GNUPGHOME="$(mktemp -d  /home/runner/work/_temp/pgpkeys-XXXXXX)" >> $GITHUB_ENV
+          echo GNUPGHOME="$(mktemp -d /tmp/pgpkeys-XXXXXX)" >> $GITHUB_ENV
           echo REPO_OWNER="$(echo "${GITHUB_REPOSITORY}" | cut -d/ -f1)" >> $GITHUB_ENV
           echo REPO_NAME="$(echo "${GITHUB_REPOSITORY}" | cut -d/ -f2)" >> $GITHUB_ENV
 

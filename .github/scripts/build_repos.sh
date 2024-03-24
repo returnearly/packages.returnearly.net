@@ -23,25 +23,25 @@ main() {
     if release=$(curl -fqs https://api.github.com/repos/${repo}/releases/latest)
     then
       tag="$(echo "$release" | jq -r '.tag_name')"
-      rpm_file="$(echo "$release" | jq -r '.assets[] | select(.name | endswith(".rpm")) | .name')"
+#      rpm_file="$(echo "$release" | jq -r '.assets[] | select(.name | endswith(".rpm")) | .name')"
       deb_file="$(echo "$release" | jq -r '.assets[] | select(.name | endswith(".deb")) | .name')"
       echo "Parsing repo $repo at $tag"
-      if [ -n "$rpm_file" ]
-      then
-        GOT_RPM=1
-        mkdir -p _site/rpm
-        pushd _site/rpm >/dev/null
-        echo "Getting RPM"
-        wget -q "https://github.com/${repo}/releases/download/${tag}/${rpm_file}"
-        (
-          if [ -n "$GPG_FINGERPRINT" ]
-          then
-            echo "Signing RPM"
-            rpm --define "%_signature gpg" --define "%_gpg_name ${GPG_FINGERPRINT}" --addsign "${rpm_file}"
-          fi
-        )
-        popd >/dev/null
-      fi
+#      if [ -n "$rpm_file" ]
+#      then
+#        GOT_RPM=1
+#        mkdir -p _site/rpm
+#        pushd _site/rpm >/dev/null
+#        echo "Getting RPM"
+#        wget -q "https://github.com/${repo}/releases/download/${tag}/${rpm_file}"
+#        (
+#          if [ -n "$GPG_FINGERPRINT" ]
+#          then
+#            echo "Signing RPM"
+#            rpm --define "%_signature gpg" --define "%_gpg_name ${GPG_FINGERPRINT}" --addsign "${rpm_file}"
+#          fi
+#        )
+#        popd >/dev/null
+#      fi
       if [ -n "$deb_file" ]
       then
         GOT_DEB=1
@@ -86,15 +86,15 @@ main() {
     popd >/dev/null
   fi
 
-  if [ $GOT_RPM -eq 1 ]
-  then
-    pushd _site/rpm >/dev/null
-    echo "Scanning RPM packages and creating the Repo"
-    createrepo_c .
-    echo "Signing the Repo Metadata"
-    gpg --detach-sign --armor repodata/repomd.xml
-    echo "RPM repo built"
-    popd >/dev/null
-  fi
+#  if [ $GOT_RPM -eq 1 ]
+#  then
+#    pushd _site/rpm >/dev/null
+#    echo "Scanning RPM packages and creating the Repo"
+#    createrepo_c .
+#    echo "Signing the Repo Metadata"
+#    gpg --detach-sign --armor repodata/repomd.xml
+#    echo "RPM repo built"
+#    popd >/dev/null
+#  fi
 }
 main
