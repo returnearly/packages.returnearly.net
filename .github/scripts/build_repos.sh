@@ -48,7 +48,7 @@ main() {
         mkdir -p "$DEB_POOL"
         pushd "$DEB_POOL" >/dev/null
         echo "Getting DEB"
-        wget -q "https://github.com/${repo}/releases/download/${tag}/${deb_file}"
+        wget "https://github.com/${repo}/releases/download/${tag}/${deb_file}"
         popd >/dev/null
       fi
     fi
