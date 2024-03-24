@@ -60,6 +60,7 @@ main() {
     mkdir -p "${DEB_DISTS_COMPONENTS}"
     echo "Scanning all downloaded DEB Packages and creating Packages file."
     dpkg-scanpackages --arch all pool/ > "${DEB_DISTS_COMPONENTS}/Packages"
+    ls -lah "${DEB_DISTS_COMPONENTS}/Packages"
     gzip -9 > "${DEB_DISTS_COMPONENTS}/Packages.gz" < "${DEB_DISTS_COMPONENTS}/Packages"
     bzip2 -9 > "${DEB_DISTS_COMPONENTS}/Packages.bz2" < "${DEB_DISTS_COMPONENTS}/Packages"
     popd >/dev/null
